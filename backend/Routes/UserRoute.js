@@ -8,10 +8,6 @@ router.get("/createNewUser", async (req, res) => {
         const user = await new User({ name: "Sandeep Sharma", email: "test@test.com", password: "test" });
         user.save();
         console.log("Logging here", user);
-        console.log("Logging here", user);
-        console.log("Logging here", user);
-        console.log("Logging here", user);
-        console.log("Logging here", user);
 
         res.status(200).json(user);;
     } catch (error) {
