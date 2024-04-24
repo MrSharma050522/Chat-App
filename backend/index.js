@@ -9,6 +9,10 @@ dotenv.config();
 // Create an Express application
 const app = express();
 
+
+
+
+
 // Mount the user routes at the /users endpoint
 app.use("/users", UserRouter);
 
