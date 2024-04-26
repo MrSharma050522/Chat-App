@@ -3,9 +3,12 @@ const router = express.Router();
 const User = require("../Modal/UserModal.js");
 
 
-router.get("/createNewUser", async (req, res) => {
+router.post("/createNewUser", async (req, res) => {
     try {
-        const user = await new User({ name: "Sandeep Sharma", email: "test@test.com", password: "test" });
+        // console.log("Api HItted", req.body);
+        const {name, email, password} = req.body;
+        console.log("Name -> ", name);
+        const user = await new User({ name: name, email: email, password: password });
         user.save();
         console.log("Logging here", user);
 
@@ -19,7 +22,7 @@ router.get("/createNewUser", async (req, res) => {
 router.get("/getAllUser", async (req, res) => {
     try {
         console.log("Getting Here user");
-        const users = await User.find().select("name email createdAt updatedAt");
+        const users = await User.find().select("name email createdAt updatedAt chatGroups active");
         console.log("user", users);
 
         res.status(200).json(users);

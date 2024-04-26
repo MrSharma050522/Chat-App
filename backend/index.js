@@ -1,20 +1,24 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
 const UserRouter = require("./Routes/UserRoute");
+const ChatGroupRouter = require("./Routes/ChatGroupRoute");
 
 // Load environment variables from .env file
 dotenv.config();
 
 // Create an Express application
 const app = express();
+app.use(cors());
 
 
 
 
-
+app.use(express.json());
 // Mount the user routes at the /users endpoint
 app.use("/users", UserRouter);
+app.use("/chat-group", ChatGroupRouter);
 
 // Define the port to listen on, defaulting to 3005 if not provided in the environment
 const PORT = process.env.PORT || 3005;

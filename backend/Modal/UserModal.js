@@ -3,16 +3,24 @@ const Schema = mongoose.Schema;
 
 
 const userSchema = new Schema({
-    name:{
-        type: String, 
-    }, 
-    email:{
+    name: {
         type: String,
     },
-    password:{
+    email: {
         type: String,
-    }
-},{ timestamps: true });
+    },
+    password: {
+        type: String,
+    },
+    active: {
+        type: Boolean,
+        default: true,
+    },
+    chatGroups: [{
+        type: Schema.Types.ObjectId,
+        ref: 'ChatGroup',
+    }]
+}, { timestamps: true });
 
 const User = mongoose.model("User", userSchema);
 
