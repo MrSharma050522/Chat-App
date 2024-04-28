@@ -47,6 +47,22 @@ router.get("/getAllUser", async (req, res) => {
     }
 });
 
+router.get("/getAllChatGroupOfAUser/:userId", async (req, res) => {
+    try {
+        // console.log("Getting Here user");
+        const { userId } = req.params;
+        const userDetails = await User.findById({_id: userId}).populate("chatGroups");
+        console.log("user ----- ", userDetails);
+        userDetails.password = "";
+
+        res.status(200).json(userDetails);
+    } catch (error) {
+        console.log("Error -> ", error);
+        res.status(400).json(error);
+    }
+});
+
+
 router.post("/userLogin", async (req, res) => {
     try {
         const { email, password } = req.body;
